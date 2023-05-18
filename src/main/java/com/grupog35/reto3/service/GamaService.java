@@ -1,5 +1,6 @@
 package com.grupog35.reto3.service;
 
+import com.grupog35.reto3.dbo.GamaDbo;
 import com.grupog35.reto3.model.GamaModel;
 import com.grupog35.reto3.repository.GamaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,16 @@ public class GamaService {
         }
     }
 
+    public void eliminar(int id){
+        gamaRepository.deleteById(id);
+    }
+
+    public void actualizar(GamaDbo gamaDbo) {
+        if(gamaRepository.existsById(gamaDbo.getIdGama())){
+            GamaModel gama = gamaRepository.findById(gamaDbo.getIdGama()).get();
+            gama.setDescription(gamaDbo.getDescription());
+            gama.setName(gamaDbo.getName());
+            gamaRepository.save(gama);
+        }
+    }
 }

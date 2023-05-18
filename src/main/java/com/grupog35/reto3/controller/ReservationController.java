@@ -1,5 +1,7 @@
 package com.grupog35.reto3.controller;
 
+import com.grupog35.reto3.dbo.MessageDbo;
+import com.grupog35.reto3.dbo.ReservationDbo;
 import com.grupog35.reto3.model.ReservationModel;
 import com.grupog35.reto3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +28,13 @@ public class ReservationController {
         reservationService.crear(reservation);
     }
 
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable int id){
+        reservationService.eliminar(id);
+    }
+
+    @PutMapping("/update")
+    public void actualizar(@RequestBody ReservationDbo reservationDbo){
+        reservationService.actualizar(reservationDbo);
+    }
 }

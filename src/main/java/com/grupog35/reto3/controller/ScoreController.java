@@ -1,5 +1,7 @@
 package com.grupog35.reto3.controller;
 
+import com.grupog35.reto3.dbo.MessageDbo;
+import com.grupog35.reto3.dbo.ScoreDbo;
 import com.grupog35.reto3.model.ScoreModel;
 import com.grupog35.reto3.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +28,13 @@ public class ScoreController {
         scoreService.crear(score);
     }
 
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable int id){
+        scoreService.eliminar(id);
+    }
+
+    @PutMapping("/update")
+    public void actualizar(@RequestBody ScoreDbo scoreDbo){
+        scoreService.actualizar(scoreDbo);
+    }
 }

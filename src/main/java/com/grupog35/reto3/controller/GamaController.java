@@ -1,5 +1,7 @@
 package com.grupog35.reto3.controller;
 
+import com.grupog35.reto3.dbo.CarDbo;
+import com.grupog35.reto3.dbo.GamaDbo;
 import com.grupog35.reto3.model.GamaModel;
 import com.grupog35.reto3.service.GamaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +28,13 @@ public class GamaController {
         gamaService.crear(gama);
     }
 
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable int id){
+        gamaService.eliminar(id);
+    }
+
+    @PutMapping("/update")
+    public void actualizar(@RequestBody GamaDbo gamaDbo){
+        gamaService.actualizar(gamaDbo);
+    }
 }

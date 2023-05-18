@@ -1,5 +1,7 @@
 package com.grupog35.reto3.service;
 
+import com.grupog35.reto3.dbo.MessageDbo;
+import com.grupog35.reto3.dbo.ReservationDbo;
 import com.grupog35.reto3.model.MessageModel;
 import com.grupog35.reto3.model.ReservationModel;
 import com.grupog35.reto3.repository.MessageRepository;
@@ -22,6 +24,20 @@ public class ReservationService {
     public void crear(ReservationModel reservation){
         if(!reservationRepository.existsById(reservation.getIdReservation())){
             reservationRepository.save(reservation);
+        }
+    }
+
+    public void eliminar(int id){
+        reservationRepository.deleteById(id);
+    }
+
+    public void actualizar(ReservationDbo reservationDbo) {
+        if(reservationRepository.existsById(reservationDbo.getIdReservation())){
+            ReservationModel message = reservationRepository.findById(reservationDbo.getIdReservation()).get();
+            message.setStartDate(reservationDbo.getStartDate());
+            message.setDevolutionDate(reservationDbo.getDevolutionDate());
+            message.setStatus("upgated");
+            reservationRepository.save(message);
         }
     }
 

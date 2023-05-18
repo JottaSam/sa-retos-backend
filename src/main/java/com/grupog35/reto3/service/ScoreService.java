@@ -1,5 +1,6 @@
 package com.grupog35.reto3.service;
 
+import com.grupog35.reto3.dbo.ScoreDbo;
 import com.grupog35.reto3.model.ReservationModel;
 import com.grupog35.reto3.model.ScoreModel;
 import com.grupog35.reto3.repository.ReservationRepository;
@@ -21,6 +22,18 @@ public class ScoreService {
 
     public void crear(ScoreModel score){
         if(!scoreRepository.existsById(score.getIdScore())){
+            scoreRepository.save(score);
+        }
+    }
+
+    public void eliminar(int id){
+        scoreRepository.deleteById(id);
+    }
+
+    public void actualizar(ScoreDbo scoreDbo){
+        if(scoreRepository.existsById(scoreDbo.getIdScore())){
+            ScoreModel score = scoreRepository.findById(scoreDbo.getIdScore()).get();
+            score.setScore(scoreDbo.getScore());
             scoreRepository.save(score);
         }
     }
